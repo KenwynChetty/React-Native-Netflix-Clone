@@ -9,14 +9,25 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Home: undefined;
+  Upcoming: undefined;
+  Downloads: undefined;
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+  HomeScreen: undefined;
+  MovieDetailScreen: undefined;
 };
 
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
 };
+
+export type Episode = {
+  id:string;
+  title:string;
+  poster:string;
+  duration:string;
+  plot:string;
+  video:string;
+}

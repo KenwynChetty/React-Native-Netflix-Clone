@@ -1,0 +1,38 @@
+type Episode @model @key(name: "bySeason", fields: ["seasonID"]) @auth(rules: [{allow: public, operations: [read]}, {allow: owner, operations: [create, update, delete]}, {allow: private, operations: [read]}]) {
+  id: ID!
+  seasonID: ID
+  title: String!
+  poster: String!
+  plot: String
+  video: String!
+  Season: Season @connection
+  duration: String
+}
+
+type Season @model @key(name: "byMovie", fields: ["movieID"]) @auth(rules: [{allow: public, operations: [read]}, {allow: owner, operations: [create, update, delete]}, {allow: private, operations: [read]}]) {
+  id: ID!
+  movieID: ID
+  name: String!
+  movie: Movie @connection
+  episodes: [Episode] @connection(keyName: "bySeason", fields: ["id"])
+}
+
+type Movie @model @key(name: "byCategory", fields: ["categoryID"]) @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}, {allow: owner, operations: [create, update, delete]}]) {
+  id: ID!
+  categoryID: ID
+  title: String
+  poster: String
+  year: Int
+  numberOfSeasons: Int
+  plot: String
+  cast: String
+  creator: String
+  seasons: [Season] @connection(keyName: "byMovie", fields: ["id"])
+}
+
+type Category @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}, {allow: owner, operations: [create, update, delete]}]) {
+  id: ID!
+  title: String!
+  movies: [Movie] @connection(keyName: "byCategory", fields: ["id"])
+}
+ 
