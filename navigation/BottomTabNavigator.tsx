@@ -88,7 +88,11 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{
+          title:"Upcoming",
+          headerStyle:{backgroundColor:"black"},
+          headerTintColor:"white"
+        }}
       />
     </TabTwoStack.Navigator>
   );
